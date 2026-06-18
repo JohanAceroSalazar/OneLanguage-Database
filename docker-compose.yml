@@ -1,0 +1,34 @@
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: database-proyect
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Johan2509
+      POSTGRES_DB: proyect_onelanguage
+    ports:
+      - "5438:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  liquibase:
+    image: liquibase/liquibase
+    container_name: liquibase_proyect
+    depends_on:
+      - postgres
+    volumes:
+      - ./:/liquibase/changelog
+      - ./postgresql-42.7.9.jar:/liquibase/lib/postgresql.jar
+    working_dir: /liquibase/changelog
+    command: >
+      --url=jdbc:postgresql://postgres:5432/proyect_onelanguage
+      --username=postgres
+      --password=Johan2509
+      --driver=org.postgresql.Driver
+      --changeLogFile=changelog-master.yaml
+      update
+
+volumes:
+  postgres_data:
