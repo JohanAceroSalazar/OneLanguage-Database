@@ -1,1 +1,16 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-table-users
+      author: JohanAceroSalazar
+      labels: HU-02
+      comment: create users table
+      changes:
+        - sqlFile:
+            path: 01_ddl/03_tables/001-table-users.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/03_tables/001-rollback-users.sql
+            stripComments: false
+            splitStatements: false
