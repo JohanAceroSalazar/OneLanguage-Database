@@ -12,12 +12,18 @@ services:
       - "5438:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d proyect_onelanguage"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   liquibase:
     image: liquibase/liquibase
     container_name: liquibase_proyect
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     volumes:
       - ./:/liquibase/changelog
       - ./postgresql-42.7.9.jar:/liquibase/lib/postgresql.jar
@@ -29,6 +35,7 @@ services:
       --driver=org.postgresql.Driver
       --changeLogFile=changelog-master.yaml
       update
+    restart: "no"
 
 volumes:
   postgres_data:

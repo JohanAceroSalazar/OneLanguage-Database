@@ -1,1 +1,16 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-pgcrypto-extension
+      author: JohanAceroSalazar
+      labels: HU-02
+      comment: Crear extensión pgcrypto para UUID
+      changes:
+        - sqlFile:
+            path: 01_ddl/00_extensions/001-create-uuid.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/00_extensions/001-create-uuid-rollback.sql
+            stripComments: false
+            splitStatements: false
