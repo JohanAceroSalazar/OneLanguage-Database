@@ -14,3 +14,19 @@ databaseChangeLog:
             path: 05_rollbacks/01_ddl/03_tables/001-rollback-users.sql
             stripComments: false
             splitStatements: false
+
+  - changeSet:
+      id: 003-create-table-Password-Reset-Tokens
+      author: JohanAceroSalazar
+      labels: HU-03
+      comment: create Password-Reset-Tokens table
+      changes:
+        - sqlFile:
+            path: 01_ddl/03_tables/002-table-Password-Reset-Tokens.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/03_tables/002-rollback-Password-Reset-Tokens.sql
+            stripComments: false
+            splitStatements: false
