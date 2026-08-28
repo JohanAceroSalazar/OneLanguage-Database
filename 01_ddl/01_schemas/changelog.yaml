@@ -1,1 +1,16 @@
-databaseChangeLog : []
+databaseChangeLog:
+  - changeSet:
+      id: 004-create-project-schemas
+      author: JohanAceroSalazar
+      labels: HU-04
+      comment: Crear schemas para el proyecto
+      changes:
+        - sqlFile:
+            path: 01_ddl/01_schemas/001-schemas.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/01_schemas/001-schemas-rollback.sql
+            stripComments: false
+            splitStatements: false
