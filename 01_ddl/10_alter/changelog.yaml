@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-move-users-and-password-reset-to-auth
+      author: JohanAceroSalazar
+      labels: HU-05
+      comment: move tables users and password reset to schema auth
+      changes:
+        - sqlFile:
+            path: 01_ddl/10_alter/001-move-users-and-password-reset-to-auth.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/10_alter/001-rollback-users-and-password-reset.sql
+            stripComments: false
+            splitStatements: false
