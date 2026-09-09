@@ -5,15 +5,15 @@ services:
     container_name: database-proyect
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Johan2509
-      POSTGRES_DB: proyect_onelanguage
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5438:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d proyect_onelanguage"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -29,9 +29,9 @@ services:
       - ./postgresql-42.7.9.jar:/liquibase/lib/postgresql.jar
     working_dir: /liquibase/changelog
     command: >
-      --url=jdbc:postgresql://postgres:5432/proyect_onelanguage
-      --username=postgres
-      --password=Johan2509
+      --url=jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      --username=${POSTGRES_USER}
+      --password=${POSTGRES_PASSWORD}
       --driver=org.postgresql.Driver
       --changeLogFile=changelog-master.yaml
       update

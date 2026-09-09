@@ -78,3 +78,67 @@ databaseChangeLog:
             path: 05_rollbacks/01_ddl/03_tables/005-rollback-user-permissions.sql
             stripComments: false
             splitStatements: false
+
+  - changeSet:
+      id: 009-create-table-signs
+      author: JohanAceroSalazar
+      labels: HU-10
+      comment: create table signs
+      changes:
+        - sqlFile:
+            path: 01_ddl/03_tables/006-table-signs.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/03_tables/006-rollback-signs.sql
+            stripComments: false
+            splitStatements: false
+
+  - changeSet:
+      id: 010-create-table-translations
+      author: JohanAceroSalazar
+      labels: HU-11
+      comment: create table translations
+      changes:
+        - sqlFile:
+            path: 01_ddl/03_tables/007-table-translations.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/03_tables/007-rollback-translations.sql
+            stripComments: false
+            splitStatements: false
+
+  - changeSet:
+      id: 011-create-table-translation-signs
+      author: JohanAceroSalazar
+      labels: HU-12
+      comment: create table translation signs
+      changes:
+        - sqlFile:
+            path: 01_ddl/03_tables/008-table-translation-signs.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/03_tables/008-rollback-translation-signs.sql
+            stripComments: false
+            splitStatements: false
+
+  - changeSet:
+      id: 012-create-table-audio-files
+      author: JohanAceroSalazar
+      labels: HU-13
+      comment: create table audio files
+      changes:
+        - sqlFile:
+            path: 01_ddl/03_tables/009-table-audio-files.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/03_tables/009-rollback-audio-files.sql
+            stripComments: false
+            splitStatements: false
