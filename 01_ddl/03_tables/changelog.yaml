@@ -46,3 +46,19 @@ databaseChangeLog:
             path: 05_rollbacks/01_ddl/03_tables/003-rollback-sessions.sql
             stripComments: false
             splitStatements: false
+
+  - changeSet:
+      id: 007-create-table-permissions
+      author: Juan282007
+      labels: HU-08
+      comment: create table permissions
+      changes:
+        - sqlFile:
+            path: 01_ddl/03_tables/004-table-permissions.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/03_tables/004-rollback-permissions.sql
+            stripComments: false
+            splitStatements: false
