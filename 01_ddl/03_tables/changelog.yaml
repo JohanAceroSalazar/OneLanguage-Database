@@ -62,3 +62,19 @@ databaseChangeLog:
             path: 05_rollbacks/01_ddl/03_tables/004-rollback-permissions.sql
             stripComments: false
             splitStatements: false
+
+  - changeSet:
+      id: 008-create-table-user-permissions
+      author: Juan282007
+      labels: HU-09
+      comment: create table user permissions
+      changes:
+        - sqlFile:
+            path: 01_ddl/03_tables/005-table-user-permissions.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/03_tables/005-rollback-user-permissions.sql
+            stripComments: false
+            splitStatements: false
