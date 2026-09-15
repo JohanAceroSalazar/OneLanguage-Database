@@ -142,3 +142,35 @@ databaseChangeLog:
             path: 05_rollbacks/01_ddl/03_tables/009-rollback-audio-files.sql
             stripComments: false
             splitStatements: false
+
+  - changeSet:
+      id: 013-create-table-accesibility-language
+      author: Juan282007
+      labels: HU-14
+      comment: create table language accesibility 
+      changes:
+        - sqlFile:
+            path: 01_ddl/03_tables/010-table-accesibility-language.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/03_tables/010-rollback-accesibility-language.sql
+            stripComments: false
+            splitStatements: false
+
+  - changeSet:
+      id: 014-create-table-accesibility-settings
+      author: Juan282007
+      labels: HU-15
+      comment: create table settings accesibility 
+      changes:
+        - sqlFile:
+            path: 01_ddl/03_tables/011-table-accesibility-settings.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/03_tables/011-rollback-accesibility-settings.sql
+            stripComments: false
+            splitStatements: false
