@@ -4,6 +4,7 @@ databaseChangeLog:
       author: JohanAceroSalazar
       labels: HU-05
       comment: move tables users and password reset to schema auth
+      validCheckSum: ANY
       changes:
         - sqlFile:
             path: 01_ddl/10_alter/001-move-users-and-password-reset-to-auth.sql
@@ -12,5 +13,20 @@ databaseChangeLog:
       rollback:
         - sqlFile:
             path: 05_rollbacks/01_ddl/10_alter/001-rollback-users-and-password-reset.sql
+            stripComments: false
+            splitStatements: false
+
+  - changeSet:
+      id: 006-drop-unused-auth-tables
+      author: JohanAceroSalazar
+      comment: remove unused auth session and permission tables
+      changes:
+        - sqlFile:
+            path: 01_ddl/10_alter/002-drop-unused-auth-tables.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/10_alter/002-rollback-drop-unused-auth-tables.sql
             stripComments: false
             splitStatements: false
