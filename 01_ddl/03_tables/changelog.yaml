@@ -4,6 +4,7 @@ databaseChangeLog:
       author: JohanAceroSalazar
       labels: HU-02
       comment: create users table
+      validCheckSum: ANY
       changes:
         - sqlFile:
             path: 01_ddl/03_tables/001-table-users.sql
@@ -20,6 +21,7 @@ databaseChangeLog:
       author: JohanAceroSalazar
       labels: HU-03
       comment: create Password-Reset-Tokens table
+      validCheckSum: ANY
       changes:
         - sqlFile:
             path: 01_ddl/03_tables/002-table-Password-Reset-Tokens.sql

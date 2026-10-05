@@ -1,4 +1,5 @@
-CREATE TABLE password_reset_tokens (
+-- Authentication tables live in the auth schema from their first creation.
+CREATE TABLE auth.password_reset_tokens (
     id_token UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 
     id_user UUID NOT NULL,
@@ -17,6 +18,6 @@ CREATE TABLE password_reset_tokens (
 
     CONSTRAINT fk_password_reset_user
         FOREIGN KEY (id_user)
-        REFERENCES users(id_user)
+        REFERENCES auth.users(id_user)
         ON DELETE CASCADE
 );
