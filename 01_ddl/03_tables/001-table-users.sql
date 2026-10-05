@@ -1,4 +1,6 @@
-CREATE TABLE users (
+-- Authentication tables live in the auth schema from their first creation.
+-- Keeping the schema here avoids creating dependent FKs before auth.users exists.
+CREATE TABLE auth.users (
     id_user UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 
     email VARCHAR(255) UNIQUE NOT NULL,
