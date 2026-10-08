@@ -30,3 +30,58 @@ databaseChangeLog:
             path: 05_rollbacks/01_ddl/10_alter/002-rollback-drop-unused-auth-tables.sql
             stripComments: false
             splitStatements: false
+
+  - changeSet:
+      id: 007-add-translation-recording-metadata
+      author: Juan282007
+      comment: store metadata for optional translation recordings
+      changes:
+        - sqlFile:
+            path: 01_ddl/10_alter/003-add-translation-recording-metadata.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/10_alter/003-rollback-translation-recording-metadata.sql
+            stripComments: false
+            splitStatements: false
+
+  - changeSet:
+      id: 008-restore-user-feature-permissions
+      author: Juan282007
+      comment: restore user-linked camera audio and file permission settings
+      changes:
+        - sqlFile:
+            path: 01_ddl/10_alter/004-restore-user-feature-permissions.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/10_alter/004-rollback-user-feature-permissions.sql
+            stripComments: false
+            splitStatements: false
+
+  - changeSet:
+      id: 009-drop-unused-translation-catalog-tables
+      author: Juan282007
+      comment: remove unused empty sign catalog and audio tables
+      changes:
+        - sqlFile:
+            path: 01_ddl/10_alter/005-drop-unused-translation-catalog-tables.sql
+            stripComments: false
+            splitStatements: false
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/10_alter/005-rollback-drop-unused-translation-catalog-tables.sql
+            stripComments: false
+            splitStatements: false
+
+  - changeSet:
+      id: 010-backfill-accessibility-settings
+      author: Juan282007
+      comment: initialize missing accessibility settings for existing users
+      changes:
+        - sqlFile:
+            path: 01_ddl/10_alter/006-backfill-accessibility-settings.sql
+            stripComments: false
+            splitStatements: false
