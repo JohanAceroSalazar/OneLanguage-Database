@@ -85,3 +85,18 @@ databaseChangeLog:
             path: 01_ddl/10_alter/006-backfill-accessibility-settings.sql
             stripComments: false
             splitStatements: false
+
+  - changeSet:
+      id: 011-remove-files-feature-permission
+      author: JohanAceroSalazar
+      comment: remove the obsolete files feature permission and user assignments
+      changes:
+        - sqlFile:
+            path: 01_ddl/10_alter/007-remove-files-feature-permission.sql
+            stripComments: false
+            splitStatements: true
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/01_ddl/10_alter/007-rollback-remove-files-feature-permission.sql
+            stripComments: false
+            splitStatements: true
