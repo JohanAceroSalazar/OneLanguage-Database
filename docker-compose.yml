@@ -5,15 +5,15 @@ services:
     container_name: database-proyect
     restart: always
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER must be set}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}
+      POSTGRES_DB: ${POSTGRES_DB:?POSTGRES_DB must be set}
     ports:
       - "5438:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:?POSTGRES_USER must be set} -d ${POSTGRES_DB:?POSTGRES_DB must be set}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -29,9 +29,9 @@ services:
       - ./postgresql-42.7.9.jar:/liquibase/lib/postgresql.jar
     working_dir: /liquibase/changelog
     command: >
-      --url=jdbc:postgresql://postgres:5432/${POSTGRES_DB}
-      --username=${POSTGRES_USER}
-      --password=${POSTGRES_PASSWORD}
+      --url=jdbc:postgresql://postgres:5432/${POSTGRES_DB:?POSTGRES_DB must be set}
+      --username=${POSTGRES_USER:?POSTGRES_USER must be set}
+      --password=${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}
       --driver=org.postgresql.Driver
       --changeLogFile=changelog-master.yaml
       update
