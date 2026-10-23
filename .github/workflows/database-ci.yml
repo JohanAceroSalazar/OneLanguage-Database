@@ -67,6 +67,7 @@ jobs:
       - name: Validate Liquibase changelogs
         run: |
           docker run --rm --network host \
+            -w /liquibase/changelog \
             -v "$GITHUB_WORKSPACE:/liquibase/changelog:ro" \
             -v "$GITHUB_WORKSPACE/postgresql-42.7.9.jar:/liquibase/lib/postgresql.jar:ro" \
             liquibase/liquibase:4.31.1 \
@@ -79,6 +80,7 @@ jobs:
       - name: Apply migrations to isolated PostgreSQL 15
         run: |
           docker run --rm --network host \
+            -w /liquibase/changelog \
             -v "$GITHUB_WORKSPACE:/liquibase/changelog:ro" \
             -v "$GITHUB_WORKSPACE/postgresql-42.7.9.jar:/liquibase/lib/postgresql.jar:ro" \
             liquibase/liquibase:4.31.1 \
@@ -110,6 +112,7 @@ jobs:
           change_sets_before=$(docker run --rm --network host -e PGPASSWORD postgres:15 \
             psql -h 127.0.0.1 -U ci_user -d ci_database -tAc 'SELECT count(*) FROM databasechangelog;')
           docker run --rm --network host \
+            -w /liquibase/changelog \
             -v "$GITHUB_WORKSPACE:/liquibase/changelog:ro" \
             -v "$GITHUB_WORKSPACE/postgresql-42.7.9.jar:/liquibase/lib/postgresql.jar:ro" \
             liquibase/liquibase:4.31.1 \
