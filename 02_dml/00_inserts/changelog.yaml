@@ -1,1 +1,16 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: 015-upsert-accessibility-languages
+      author: JohanAceroSalazar
+      labels: accessibility
+      comment: seed supported interface languages
+      changes:
+        - sqlFile:
+            path: 02_dml/00_inserts/001-upsert-accessibility-languages.sql
+            stripComments: false
+            splitStatements: true
+      rollback:
+        - sqlFile:
+            path: 05_rollbacks/02_dml/00_inserts/001-rollback-accessibility-languages.sql
+            stripComments: false
+            splitStatements: false

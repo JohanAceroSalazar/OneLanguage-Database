@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS translation.translation_signs;
