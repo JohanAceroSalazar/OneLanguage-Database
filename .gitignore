@@ -1,2 +1,4 @@
 .env
 liquibase.properties
+.env.*
+!.env.example
